@@ -38,6 +38,7 @@ public class MemFragment extends MvpAppCompatFragment implements MemView, BackBu
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_mem, container, false);
         unbinder = ButterKnife.bind(this, view);
+        presenter.initMem();
         return view;
     }
 
