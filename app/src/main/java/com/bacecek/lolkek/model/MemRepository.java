@@ -3,6 +3,7 @@ package com.bacecek.lolkek.model;
 import android.util.Log;
 import android.widget.Spinner;
 
+import com.bacecek.lolkek.data.MachineLearningGod;
 import com.bacecek.lolkek.data.MemFactory;
 import com.bacecek.lolkek.data.MemState;
 import com.bacecek.lolkek.data.ResultState;
@@ -22,12 +23,14 @@ import io.reactivex.Observable;
 public class MemRepository {
 
     private final MemFactory memFactory;
+    private final MachineLearningGod secretAlgorithm;
 
     private Spinner currentSpinner;
 
     @Inject
-    public MemRepository(MemFactory memFactory) {
+    public MemRepository(MemFactory memFactory, MachineLearningGod secretAlgorithm) {
         this.memFactory = memFactory;
+        this.secretAlgorithm = secretAlgorithm;
     }
 
     public Observable<ScreenState> initMem() {
