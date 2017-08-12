@@ -11,6 +11,7 @@ import com.bacecek.lolkek.navigation.command.BackTo;
 import com.bacecek.lolkek.navigation.command.Forward;
 import com.bacecek.lolkek.navigation.command.Replace;
 import com.bacecek.lolkek.view.MemFragment;
+import com.bacecek.lolkek.view.choose_spinner.ChooseSpinnerFragment;
 
 import ru.terrakok.cicerone.Navigator;
 import ru.terrakok.cicerone.commands.Back;
@@ -113,6 +114,8 @@ public class AppNavigator implements Navigator {
         switch (screenKey) {
             case R.id.mem:
                 return MemFragment.newInstance();
+            case R.id.btn_lol:
+                return ChooseSpinnerFragment.newInstance();
             default:
                 return null;
         }

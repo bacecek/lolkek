@@ -6,10 +6,10 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 /**
- * 
+ *
  */
 @Singleton
-public class MachineLearningGod   {
+public class MachineLearningGod {
 
     @Inject
     public MachineLearningGod() {
@@ -17,10 +17,15 @@ public class MachineLearningGod   {
 
     public RoundResult getResult() {
         int answer = new Random().nextInt(4);
-        if (answer<2){
-        return RoundResult.BAD;
+        if (answer < 2) {
+            return RoundResult.BAD;
         } else {
             return RoundResult.LOL;
         }
+    }
+
+    public int getPercent() {
+        int answer = 50 + new Random().nextInt(50);
+        return answer;
     }
 }

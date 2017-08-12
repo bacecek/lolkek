@@ -52,10 +52,10 @@ public class MemPresenter extends BasePresenter<MemView> {
     }
 
     public void onLolClicked() {
-        appRouter.showSystemMessage("LOL");
+
     }
 
     public void onGavnoClicked() {
-        appRouter.showSystemMessage("BAD");
+
     }
 }

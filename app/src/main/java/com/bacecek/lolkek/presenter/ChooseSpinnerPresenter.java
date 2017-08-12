@@ -3,7 +3,6 @@ package com.bacecek.lolkek.presenter;
 import com.arellomobile.mvp.InjectViewState;
 import com.bacecek.lolkek.model.MemRepository;
 import com.bacecek.lolkek.navigation.AppRouter;
-import com.bacecek.lolkek.presenter.BasePresenter;
 import com.bacecek.lolkek.view.choose_spinner.ChooseSpinnerView;
 import com.bacecek.lolkek.view.models.Spinner;
 
@@ -34,9 +33,10 @@ public class ChooseSpinnerPresenter extends BasePresenter<ChooseSpinnerView> {
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
         List<Spinner> dataset = new ArrayList<>();
-        dataset.add(new Spinner(1,100, 2, 2));
-        dataset.add(new Spinner(2,100, 3, 5));
-        dataset.add(new Spinner(3,100, 10, 5));
+        dataset.add(new Spinner(100, 2, 2));
+        dataset.add(new Spinner(100, 3, 5));
+        dataset.add(new Spinner(100, 5, 2));
+        dataset.add(new Spinner(100, 10, 10));
         getViewState().setSpinners(dataset);
     }
 

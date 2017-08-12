@@ -10,7 +10,7 @@ public enum Screen {
     //---------------------------------Available from drawer--------------------------------------//
     SCREEN_MEM(R.id.mem),
 
-    SCREEN_TWO(2);
+    SCREEN_CHOOSE_SPINNER(R.id.btn_lol);
 
 
 

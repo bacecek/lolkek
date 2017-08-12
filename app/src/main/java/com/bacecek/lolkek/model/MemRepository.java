@@ -27,8 +27,6 @@ public class MemRepository {
 
     private RoundResult choiceRound;
 
-    private Spinner currentSpinner;
-
     @Inject
     public MemRepository(MemFactory memFactory, RoundLogic roundLogic) {
         this.memFactory = memFactory;
@@ -69,11 +67,11 @@ public class MemRepository {
     }
 
     private ResultState createResultState() {
-        if (currentSpinner != null) {
-            return new ResultState(roundLogic.getTitle(), getWinCats(), currentSpinner, roundLogic.getPercent());
+        if (roundLogic.getSpinner() != null) {
+            return new ResultState(roundLogic.getTitle(), getWinCats(), roundLogic.getSpinner(), roundLogic.getPercent());
         } else {
             setChoiceRound(roundLogic.getResult());
-            return new ResultState(roundLogic.getTitle(), getWinCats(), currentSpinner, roundLogic.getPercent());
+            return new ResultState(roundLogic.getTitle(), getWinCats(), roundLogic.getSpinner(), roundLogic.getPercent());
         }
     }
 
@@ -84,17 +82,13 @@ public class MemRepository {
 //--------------------------------SpinnerInteraction------------------------------------------//
 
     public void setSpinner(Spinner spinner) {
-        this.currentSpinner = spinner;
-    }
-
-    public void clearSpinner() {
-        this.currentSpinner = null;
+        this.roundLogic.setSpinner(spinner);
     }
 
     public String getWinCats() {
         int cats;
-        if (roundLogic.isWin(choiceRound) && currentSpinner !=null){
-            cats = RoundLogic.prize * currentSpinner.getCoeff();
+        if (roundLogic.isWin(choiceRound) && roundLogic.getSpinner() !=null){
+            cats = RoundLogic.prize * roundLogic.getSpinner().getCoeff();
         } else {
             cats = RoundLogic.prize;
         }

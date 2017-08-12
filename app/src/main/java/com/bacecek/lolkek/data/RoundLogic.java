@@ -1,6 +1,6 @@
 package com.bacecek.lolkek.data;
 
-import java.util.Random;
+import com.bacecek.lolkek.view.models.Spinner;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -16,9 +16,20 @@ public class RoundLogic {
     private boolean started;
     private boolean ended;
     private RoundResult result;
+
     private final MachineLearningGod machineLearningGod;
     private String percent;
     private String title;
+
+    private Spinner spinner;
+
+    public Spinner getSpinner() {
+        return spinner;
+    }
+
+    public void setSpinner(Spinner spinner) {
+        this.spinner = spinner;
+    }
 
     @Inject
     public RoundLogic(MachineLearningGod machineLearningGod) {
@@ -42,8 +53,9 @@ public class RoundLogic {
     }
 
     private void generateNewResult() {
+        this.spinner = null;
         this.result = machineLearningGod.getResult();
-        this.percent = String.valueOf(new Random().nextInt(100));
+        this.percent = String.valueOf(machineLearningGod.getPercent());
     }
 
     public void maybeResult() {

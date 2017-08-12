@@ -2,6 +2,7 @@ package com.bacecek.lolkek.view;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import com.bacecek.lolkek.data.ResultState;
 import com.bacecek.lolkek.data.ScreenState;
 import com.bacecek.lolkek.navigation.BackButtonListener;
 import com.bacecek.lolkek.presenter.MemPresenter;
+import com.bacecek.lolkek.view.choose_spinner.ChooseSpinnerFragment;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
@@ -47,6 +49,7 @@ public class MemFragment extends MvpAppCompatFragment implements MemView, BackBu
     @BindView(R.id.txt_percent) TextView resultPercent;
     @BindView(R.id.txt_cats) TextView plusCats;
     @BindView(R.id.img_spinner) ImageView spinner;
+    @BindView(R.id.txt_spinners) TextView minus;
 
     @BindViews({R.id.img_mem, R.id.txt_timer}) List<View> memStateList;
 
@@ -110,19 +113,23 @@ public class MemFragment extends MvpAppCompatFragment implements MemView, BackBu
         if (resultState.getSpinner() != null){
             spinner.setColorFilter(Utils.getSpinnerColorFilter(resultState.getSpinner().getCoeff(), getContext()));
             spinner.setVisibility(View.VISIBLE);
+            minus.setVisibility(View.VISIBLE);
         } else {
+            minus.setVisibility(View.GONE);
             spinner.setVisibility(View.GONE);
         }
     }
 
     @OnClick(R.id.btn_gavno)
     public void onGavnoClicked(){
-        presenter.onGavnoClicked();
+        Log.d("myLogs", "onGavnoClicked: ");
+        ChooseSpinnerFragment.newInstance().show(getFragmentManager(), "bad");
     }
 
     @OnClick(R.id.btn_lol)
     public void onLolClicked(){
-        presenter.onLolClicked();
+        Log.d("myLogs", "onLolClicked: ");
+        ChooseSpinnerFragment.newInstance().show(getFragmentManager(), "lol");
     }
 
 }

@@ -7,7 +7,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Выбирай каким\nспиннером ты кекаешь!"
+        android:text="@string/choose_spinner"
         android:textSize="20sp"
         android:textColor="@android:color/black"
         android:layout_marginBottom="16dp"
