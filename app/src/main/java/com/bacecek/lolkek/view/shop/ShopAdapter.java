@@ -32,7 +32,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.Holder> {
 
     @Override
     public void onBindViewHolder(Holder holder, int position) {
-        holder.tvCount.setText("123");
+        holder.tvCount.setText(String.valueOf(dataset.get(position).getCount()));
 
         int type = dataset.get(position).getCoeff();
         switch (type) {
