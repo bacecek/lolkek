@@ -1,13 +1,13 @@
 package com.bacecek.lolkek.model;
 
-import android.util.Log;
-import android.widget.Spinner;
 
-import com.bacecek.lolkek.data.MachineLearningGod;
 import com.bacecek.lolkek.data.MemFactory;
 import com.bacecek.lolkek.data.MemState;
 import com.bacecek.lolkek.data.ResultState;
+import com.bacecek.lolkek.data.RoundLogic;
+import com.bacecek.lolkek.data.RoundResult;
 import com.bacecek.lolkek.data.ScreenState;
+import com.bacecek.lolkek.view.models.Spinner;
 
 import java.util.concurrent.TimeUnit;
 
@@ -23,14 +23,16 @@ import io.reactivex.Observable;
 public class MemRepository {
 
     private final MemFactory memFactory;
-    private final MachineLearningGod secretAlgorithm;
+    private final RoundLogic roundLogic;
+
+    private RoundResult choiceRound;
 
     private Spinner currentSpinner;
 
     @Inject
-    public MemRepository(MemFactory memFactory, MachineLearningGod secretAlgorithm) {
+    public MemRepository(MemFactory memFactory, RoundLogic roundLogic) {
         this.memFactory = memFactory;
-        this.secretAlgorithm = secretAlgorithm;
+        this.roundLogic = roundLogic;
     }
 
     public Observable<ScreenState> initMem() {
@@ -51,10 +53,11 @@ public class MemRepository {
 
     private ScreenState getScreenState(long timestamp) {
         int currentSecond = getCurrentSecond(timestamp) / 1000;
-        Log.d("myLogs", "getScreenState() called with: currentSecond = [" + currentSecond + "]");
         if (currentSecond < 16) {
+            roundLogic.maybeNewRound();
             return createMemState(currentSecond, timestamp);
         } else {
+            roundLogic.maybeResult();
             return createResultState();
         }
     }
@@ -66,10 +69,19 @@ public class MemRepository {
     }
 
     private ResultState createResultState() {
-        return new ResultState();
+        if (currentSpinner != null) {
+            return new ResultState(roundLogic.getTitle(), getWinCats(), currentSpinner, roundLogic.getPercent());
+        } else {
+            setChoiceRound(roundLogic.getResult());
+            return new ResultState(roundLogic.getTitle(), getWinCats(), currentSpinner, roundLogic.getPercent());
+        }
     }
 
-    //--------------------------------SpinnerInteraction------------------------------------------//
+    public void setChoiceRound(RoundResult choiceRound) {
+        this.choiceRound = choiceRound;
+    }
+
+//--------------------------------SpinnerInteraction------------------------------------------//
 
     public void setSpinner(Spinner spinner) {
         this.currentSpinner = spinner;
@@ -77,5 +89,15 @@ public class MemRepository {
 
     public void clearSpinner() {
         this.currentSpinner = null;
+    }
+
+    public String getWinCats() {
+        int cats;
+        if (roundLogic.isWin(choiceRound) && currentSpinner !=null){
+            cats = RoundLogic.prize * currentSpinner.getCoeff();
+        } else {
+            cats = RoundLogic.prize;
+        }
+        return String.valueOf(cats);
     }
 }
