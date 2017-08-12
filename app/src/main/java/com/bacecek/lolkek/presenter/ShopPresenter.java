@@ -39,10 +39,10 @@ public class ShopPresenter extends BasePresenter<ShopView> {
         int countSpinner3 = infoRepo.getSpinner(5);
         int countSpinner4 = infoRepo.getSpinner(10);
 
-        Spinner spinner1 = new Spinner(2, 100, 2, countSpinner1);
-        Spinner spinner2 = new Spinner(3, 200, 3, countSpinner2);
-        Spinner spinner3 = new Spinner(5, 300, 5, countSpinner3);
-        Spinner spinner4 = new Spinner(10, 400, 10, countSpinner4);
+        Spinner spinner1 = new Spinner(100, 2, countSpinner1);
+        Spinner spinner2 = new Spinner(200, 3, countSpinner2);
+        Spinner spinner3 = new Spinner(300, 5, countSpinner3);
+        Spinner spinner4 = new Spinner(400, 10, countSpinner4);
 
         List<Spinner> dataset = new ArrayList<>();
         dataset.add(spinner1);
