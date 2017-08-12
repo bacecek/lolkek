@@ -13,6 +13,7 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.bacecek.lolkek.KekApplication;
 import com.bacecek.lolkek.R;
+import com.bacecek.lolkek.presenter.ChooseSpinnerPresenter;
 import com.bacecek.lolkek.view.models.Spinner;
 
 import java.util.List;

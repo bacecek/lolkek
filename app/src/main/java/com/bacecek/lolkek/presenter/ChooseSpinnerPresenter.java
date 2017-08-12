@@ -1,9 +1,10 @@
-package com.bacecek.lolkek.view.choose_spinner;
+package com.bacecek.lolkek.presenter;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.bacecek.lolkek.model.MemRepository;
 import com.bacecek.lolkek.navigation.AppRouter;
 import com.bacecek.lolkek.presenter.BasePresenter;
+import com.bacecek.lolkek.view.choose_spinner.ChooseSpinnerView;
 import com.bacecek.lolkek.view.models.Spinner;
 
 import java.util.ArrayList;
@@ -41,5 +42,6 @@ public class ChooseSpinnerPresenter extends BasePresenter<ChooseSpinnerView> {
 
     public void onChooseSpinner(Spinner spinner) {
         memRepository.setSpinner(spinner);
+        getViewState().dismiss();
     }
 }

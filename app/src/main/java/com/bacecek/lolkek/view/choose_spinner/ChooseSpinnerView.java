@@ -11,4 +11,5 @@ import java.util.List;
 
 public interface ChooseSpinnerView extends BaseView {
     void setSpinners(List<Spinner> spinners);
+    void dismiss();
 }
