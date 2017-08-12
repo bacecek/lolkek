@@ -16,50 +16,53 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <LinearLayout
+    <FrameLayout
         android:id="@+id/bottom_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:animateLayoutChanges="true"
-        android:background="@color/colorPrimary"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <FrameLayout
-            android:id="@id/drawer"
+            android:id="@+id/drawer"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_gravity="top"
-            android:animateLayoutChanges="true"
-            android:background="@android:color/darker_gray" />
+            android:layout_height="match_parent" />
 
-        <FrameLayout
-            android:id="@+id/cat_container"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="2"
             android:animateLayoutChanges="true"
-            android:background="@color/colorAccent">
+            android:background="@color/colorPrimary"
+            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="cat" />
-        </FrameLayout>
+            <FrameLayout
+                android:id="@+id/cat_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:animateLayoutChanges="true"
+                android:background="@color/colorAccent">
 
-        <FrameLayout
-            android:id="@+id/shop_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:animateLayoutChanges="true"
-            android:background="@color/colorPrimary">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="cat" />
+            </FrameLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="shop" />
-        </FrameLayout>
-    </LinearLayout>
+            <FrameLayout
+                android:id="@+id/shop_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:animateLayoutChanges="true"
+                android:background="@color/colorPrimary">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="shop" />
+            </FrameLayout>
+        </LinearLayout>
+
+    </FrameLayout>
 
 
 </com.sothree.slidinguppanel.SlidingUpPanelLayout>
