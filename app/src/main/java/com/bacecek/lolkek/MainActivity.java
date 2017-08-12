@@ -14,6 +14,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import ru.terrakok.cicerone.NavigatorHolder;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,6 +24,18 @@ public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.sliding_layout)
     SlidingUpPanelLayout slidingLayout;
+
+    @OnClick(R.id.btn_main_shop)
+    void onBtnShopClick() {
+        if (slidingLayout.getPanelState() == SlidingUpPanelLayout.PanelState.EXPANDED) {
+            slidingLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+            return;
+        }
+        if (slidingLayout.getPanelState() == SlidingUpPanelLayout.PanelState.ANCHORED
+                || slidingLayout.getPanelState() == SlidingUpPanelLayout.PanelState.COLLAPSED) {
+            slidingLayout.setPanelState(SlidingUpPanelLayout.PanelState.EXPANDED);
+        }
+    }
 
     private AppNavigator navigator;
     // ---------------------------------------- lifecycle -------------------------------------------
