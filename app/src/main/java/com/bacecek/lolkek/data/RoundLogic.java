@@ -1,5 +1,6 @@
 package com.bacecek.lolkek.data;
 
+import com.bacecek.lolkek.model.InfoRepo;
 import com.bacecek.lolkek.view.models.Spinner;
 
 import javax.inject.Inject;
@@ -18,6 +19,7 @@ public class RoundLogic {
     private RoundResult result;
 
     private final MachineLearningGod machineLearningGod;
+    private final InfoRepo infoRepo;
     private String percent;
     private String title;
 
@@ -32,8 +34,9 @@ public class RoundLogic {
     }
 
     @Inject
-    public RoundLogic(MachineLearningGod machineLearningGod) {
+    public RoundLogic(MachineLearningGod machineLearningGod, InfoRepo infoRepo) {
         this.machineLearningGod = machineLearningGod;
+        this.infoRepo = infoRepo;
     }
 
     public boolean isWin(RoundResult choice) {
@@ -60,6 +63,11 @@ public class RoundLogic {
 
     public void maybeResult() {
         if (!ended) {
+            int newprize = RoundLogic.prize;
+            if (spinner !=null){
+                newprize = newprize * spinner.getCoeff();
+            }
+            infoRepo.increaseBalance(newprize);
             ended = true;
             started = false;
         }

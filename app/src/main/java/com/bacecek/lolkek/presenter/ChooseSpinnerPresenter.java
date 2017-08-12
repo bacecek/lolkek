@@ -59,6 +59,6 @@ public class ChooseSpinnerPresenter extends BasePresenter<ChooseSpinnerView> {
 
     public void onChooseSpinner(Spinner spinner) {
         memRepository.setSpinner(spinner);
-        getViewState().dismiss();
+        //getViewState().dismiss();
     }
 }

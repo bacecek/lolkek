@@ -53,7 +53,7 @@ public class MemFactory {
     }
 
     public String getMemOfTime(long timestamp) {
-        long time = timestamp % 15000;
+        long time = timestamp % 35000;
         int memInd=0;
 
         return memes[memInd];

@@ -70,10 +70,18 @@ public class ChooseSpinnerFragment extends MvpAppCompatDialogFragment implements
     @Override
     public void setSpinners(List<Spinner> spinners) {
         if(adapter == null) {
-            adapter = new ChooseSpinnerAdapter(p -> presenter.onChooseSpinner(p), spinners);
+            adapter = new ChooseSpinnerAdapter(p -> {
+                presenter.onChooseSpinner(p);
+                this.dismissAllowingStateLoss();
+            }, spinners);
             listSpinners.setAdapter(adapter);
         } else {
             adapter.setData(spinners);
         }
+    }
+
+    @Override
+    public void dismiss() {
+        //dismissAllowingStateLoss();
     }
 }
