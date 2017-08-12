@@ -2,20 +2,29 @@ package com.bacecek.lolkek;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SlidingPaneLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 import com.bacecek.lolkek.navigation.AppNavigator;
 import com.bacecek.lolkek.navigation.BackButtonListener;
 import com.bacecek.lolkek.navigation.Screen;
 import com.bacecek.lolkek.navigation.command.Replace;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import ru.terrakok.cicerone.NavigatorHolder;
 
 public class MainActivity extends AppCompatActivity {
 
-    @Inject NavigatorHolder navigatorHolder;
+    @Inject
+    NavigatorHolder navigatorHolder;
+
+    @BindView(R.id.sliding_layout)
+    SlidingUpPanelLayout slidingLayout;
 
     private AppNavigator navigator;
     // ---------------------------------------- lifecycle -------------------------------------------
@@ -26,11 +35,18 @@ public class MainActivity extends AppCompatActivity {
         ((KekApplication) getApplication()).getApplicationComponent().inject(this);
         setContentView(R.layout.activity_main);
 
+        ButterKnife.bind(this);
+        setupViews();
+
         navigator = new AppNavigator(this, R.id.fragment_container);
 
         if (savedInstanceState == null) {
             navigator.applyCommand(new Replace(Screen.SCREEN_MEM, null));
         }
+    }
+
+    private void setupViews() {
+        slidingLayout.setAnchorPoint(0.3f);
     }
 
 
