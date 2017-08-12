@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupViews() {
-        slidingLayout.setAnchorPoint(0.3f);
+        slidingLayout.setAnchorPoint(0.35f);
     }
 
 

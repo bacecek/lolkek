@@ -8,7 +8,7 @@
     android:background="@android:color/transparent"
     android:gravity="bottom"
     sothree:umanoDragView="@+id/drawer"
-    sothree:umanoPanelHeight="84dp"
+    sothree:umanoPanelHeight="50dp"
     sothree:umanoShadowHeight="0dp">
 
     <FrameLayout
@@ -17,20 +17,52 @@
         android:layout_height="match_parent" />
 
     <FrameLayout
-        android:id="@+id/cat_container"
+        android:id="@+id/bottom_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:animateLayoutChanges="true"
-        android:background="@color/colorAccent">
+        android:layout_height="match_parent">
 
         <FrameLayout
-            android:id="@id/drawer"
+            android:id="@+id/drawer"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_gravity="top"
+            android:layout_height="50dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:animateLayoutChanges="true"
-            android:background="@android:color/darker_gray" />
+            android:background="@color/colorPrimary"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/cat_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:animateLayoutChanges="true"
+                android:background="@color/colorAccent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="cat" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/shop_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:animateLayoutChanges="true"
+                android:background="@color/colorPrimary">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="shop" />
+            </FrameLayout>
+        </LinearLayout>
 
     </FrameLayout>
+
 
 </com.sothree.slidinguppanel.SlidingUpPanelLayout>
