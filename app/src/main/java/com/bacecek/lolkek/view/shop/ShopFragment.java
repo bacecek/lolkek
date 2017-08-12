@@ -2,7 +2,6 @@ package com.bacecek.lolkek.view.shop;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -10,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.bacecek.lolkek.R;
 import com.bacecek.lolkek.view.models.Spinner;
 
@@ -20,7 +20,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class ShopFragment extends Fragment {
+public class ShopFragment extends MvpAppCompatFragment {
 
     @BindView(R.id.rv_shop)
     RecyclerView rvShop;
