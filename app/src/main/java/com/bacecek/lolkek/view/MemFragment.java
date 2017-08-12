@@ -24,7 +24,6 @@ public class MemFragment extends MvpAppCompatFragment implements MemView, BackBu
     public static MemFragment newInstance() {
         return new MemFragment();
     }
-
     private Unbinder unbinder;
 
     @InjectPresenter MemPresenter presenter;
@@ -39,7 +38,7 @@ public class MemFragment extends MvpAppCompatFragment implements MemView, BackBu
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_mem, container, false);
         unbinder = ButterKnife.bind(this, view);
-        return super.onCreateView(inflater, container, savedInstanceState);
+        return view;
     }
 
     @Override
@@ -52,4 +51,5 @@ public class MemFragment extends MvpAppCompatFragment implements MemView, BackBu
     public void onBackPressed() {
         presenter.onBackPressed();
     }
+
 }

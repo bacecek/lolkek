@@ -1,12 +1,14 @@
 package com.bacecek.lolkek.navigation;
 
 
+import com.bacecek.lolkek.R;
+
 /**
  * @author alexandergartemov
  */
 public enum Screen {
     //---------------------------------Available from drawer--------------------------------------//
-    SCREEN_MEM(1),
+    SCREEN_MEM(R.id.mem),
 
     SCREEN_TWO(2);
 
