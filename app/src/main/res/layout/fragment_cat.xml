@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rv_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:background="@android:color/transparent">
 
@@ -11,33 +11,34 @@
         android:id="@+id/tv_plus_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_alignStart="@+id/cat_image"
+        android:layout_below="@+id/tv_plus_2"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="24dp"
         android:textSize="24sp"
-        tools:text="100"
-        android:layout_alignBaseline="@+id/tv_plus_2"
-        android:layout_alignBottom="@+id/tv_plus_2"
-        android:layout_toEndOf="@+id/tv_plus_2" />
+        tools:text="100" />
 
     <TextView
         android:id="@+id/tv_plus_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:textSize="24sp"
-        tools:text="100"
         android:layout_alignTop="@+id/cat_image"
-        android:layout_alignEnd="@+id/tv_plus_1"
-        android:layout_marginEnd="22dp" />
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="19dp"
+        android:layout_toEndOf="@+id/tv_plus_3"
+        android:textSize="24sp"
+        tools:text="100" />
 
     <TextView
         android:id="@+id/tv_plus_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="58dp"
+        android:layout_alignBottom="@+id/cat_image"
+        android:layout_alignEnd="@+id/cat_image"
+        android:layout_marginBottom="26dp"
+        android:layout_marginEnd="42dp"
         android:textSize="24sp"
-        tools:text="100"
-        android:layout_below="@+id/tv_plus_3"
-        android:layout_alignStart="@+id/cat_image" />
+        tools:text="100" />
 
     <ImageView
         android:id="@+id/cat_image"

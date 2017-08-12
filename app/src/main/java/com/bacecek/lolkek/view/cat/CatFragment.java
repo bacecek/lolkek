@@ -126,11 +126,11 @@ public class CatFragment extends MvpAppCompatFragment implements CatView, BackBu
     private TextView crtToAnimate(int counter) {
         int crt = counter % 3;
         switch (crt) {
-            case 1:
+            case 0:
                 return tvPlus1;
-            case 2:
+            case 1:
                 return tvPlus2;
-            case 3:
+            case 2:
                 return tvPlus3;
             default:
                 return tvPlus1;
