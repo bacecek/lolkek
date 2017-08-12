@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bacecek.lolkek.R;
@@ -55,9 +56,18 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.Holder> {
         }
     }
 
+    Spinner getItem(int position) {
+        return dataset.get(position);
+    }
+
     @Override
     public int getItemCount() {
         return dataset.size();
+    }
+
+    public void setDataset(List<Spinner> dataset) {
+        this.dataset = dataset;
+        notifyDataSetChanged();
     }
 
     static class Holder extends RecyclerView.ViewHolder {
@@ -66,9 +76,11 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.Holder> {
         TextView tvCount;
         TextView tvPrice;
         TextView btnBuy;
+        RelativeLayout relativeLayout;
 
         Holder(View itemView, OnShopItemSelected onShopItemSelected) {
             super(itemView);
+            relativeLayout = (RelativeLayout) itemView.findViewById(R.id.layout_shop_buy);
             ivSpinner = (ImageView) itemView.findViewById(R.id.iv_shop_spinner);
             tvCount = (TextView) itemView.findViewById(R.id.tv_shop_count);
             tvPrice = (TextView) itemView.findViewById(R.id.tv_shop_price);
@@ -77,11 +89,8 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.Holder> {
         }
 
         private void setListener(final OnShopItemSelected listener) {
-            btnBuy.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (listener != null) listener.onBuyClick(getAdapterPosition());
-                }
+            relativeLayout.setOnClickListener(v -> {
+                if (listener != null) listener.onBuyClick(getAdapterPosition());
             });
         }
 
