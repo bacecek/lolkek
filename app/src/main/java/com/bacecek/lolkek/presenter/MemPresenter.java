@@ -48,4 +48,11 @@ public class MemPresenter extends BasePresenter<MemView> {
         //Error handling on hakaton? Maybe
     }
 
+    public void onLolClicked() {
+        appRouter.showSystemMessage("LOL");
+    }
+
+    public void onGavnoClicked() {
+        appRouter.showSystemMessage("BAD");
+    }
 }
