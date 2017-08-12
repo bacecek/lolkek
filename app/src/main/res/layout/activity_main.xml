@@ -48,6 +48,7 @@
                 android:id="@+id/fragment"
                 android:name="com.bacecek.lolkek.view.shop.ShopFragment"
                 android:layout_width="match_parent"
+                android:layout_gravity="center"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 tools:layout="@layout/fragment_shop" />

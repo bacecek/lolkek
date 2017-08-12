@@ -2,6 +2,7 @@ package com.bacecek.lolkek.view;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -83,13 +84,15 @@ public class MemFragment extends MvpAppCompatFragment implements MemView, BackBu
     }
 
     private void showMem(MemState memState) {
+
+        timer.setText(String.valueOf(memState.getTime()));
         Glide.with(getContext())
                 .load(memState.getMem())
                 .into(mem);
     }
 
     private void showResult(ResultState resultState) {
-
+        Log.d("myLogs", "showResult: ");
     }
 
     @OnClick(R.id.btn_gavno)
@@ -97,7 +100,7 @@ public class MemFragment extends MvpAppCompatFragment implements MemView, BackBu
         presenter.onGavnoClicked();
     }
 
-    @OnClick(R.id.btn_gavno)
+    @OnClick(R.id.btn_lol)
     public void onLolClicked(){
         presenter.onLolClicked();
     }

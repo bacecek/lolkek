@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -23,27 +24,29 @@ public class MemPresenter extends BasePresenter<MemView> {
     private final AppRouter appRouter;
     private final MemRepository memRepository;
 
+    CompositeDisposable composite = new CompositeDisposable();
+
     @Inject
-    public MemPresenter(AppRouter appRouter,MemRepository memRepository) {
+    public MemPresenter(AppRouter appRouter, MemRepository memRepository) {
         super(appRouter);
         this.appRouter = appRouter;
         this.memRepository = memRepository;
     }
 
-    public void initMem(){
-        memRepository
+    public void initMem() {
+        composite.clear();
+        composite.add(memRepository
                 .initMem()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(this::handleScreenStateSuccess, this::handleScreenStateFailure);
+                .subscribe(this::handleScreenStateSuccess, this::handleScreenStateFailure));
     }
 
-    public void handleScreenStateSuccess(ScreenState screenState){
-        Log.d("myLogs", "handleScreenStateSuccess: " + screenState.getState());
+    public void handleScreenStateSuccess(ScreenState screenState) {
         getViewState().showScreenState(screenState);
     }
 
-    public void handleScreenStateFailure(Throwable throwable){
+    public void handleScreenStateFailure(Throwable throwable) {
         Log.d("myLogs", "handleScreenStateFailure: " + throwable);
         //Error handling on hakaton? Maybe
     }

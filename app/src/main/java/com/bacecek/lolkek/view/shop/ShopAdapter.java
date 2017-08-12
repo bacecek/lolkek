@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -33,6 +32,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.Holder> {
     @Override
     public void onBindViewHolder(Holder holder, int position) {
         holder.tvCount.setText(String.valueOf(dataset.get(position).getCount()));
+        holder.tvPrice.setText(String.valueOf(dataset.get(position).getPrice()));
 
         int type = dataset.get(position).getCoeff();
         switch (type) {
@@ -64,13 +64,15 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.Holder> {
 
         ImageView ivSpinner;
         TextView tvCount;
-        Button btnBuy;
+        TextView tvPrice;
+        TextView btnBuy;
 
         Holder(View itemView, OnShopItemSelected onShopItemSelected) {
             super(itemView);
             ivSpinner = (ImageView) itemView.findViewById(R.id.iv_shop_spinner);
             tvCount = (TextView) itemView.findViewById(R.id.tv_shop_count);
-            btnBuy = (Button) itemView.findViewById(R.id.btn_shop_buy);
+            tvPrice = (TextView) itemView.findViewById(R.id.tv_shop_price);
+            btnBuy = (TextView) itemView.findViewById(R.id.btn_shop_buy);
             setListener(onShopItemSelected);
         }
 

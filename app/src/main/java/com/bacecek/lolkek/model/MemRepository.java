@@ -1,7 +1,9 @@
 package com.bacecek.lolkek.model;
 
 import android.util.Log;
+import android.widget.Spinner;
 
+import com.bacecek.lolkek.data.MachineLearningGod;
 import com.bacecek.lolkek.data.MemFactory;
 import com.bacecek.lolkek.data.MemState;
 import com.bacecek.lolkek.data.ResultState;
@@ -21,30 +23,34 @@ import io.reactivex.Observable;
 public class MemRepository {
 
     private final MemFactory memFactory;
+    private final MachineLearningGod secretAlgorithm;
+
+    private Spinner currentSpinner;
 
     @Inject
-    public MemRepository(MemFactory memFactory) {
+    public MemRepository(MemFactory memFactory, MachineLearningGod secretAlgorithm) {
         this.memFactory = memFactory;
+        this.secretAlgorithm = secretAlgorithm;
     }
 
     public Observable<ScreenState> initMem() {
         return Observable
                 .timer(1000, TimeUnit.MILLISECONDS)
-                .retry()
+                .repeat()
                 .map(this::getTimeStamp)
                 .map(this::getScreenState);
     }
 
-    private long getTimeStamp(Long l) {
+    private long getTimeStamp(long i) {
         return System.currentTimeMillis();
     }
 
     private int getCurrentSecond(Long timestamp) {
-        return (int) (timestamp % 20);
+        return (int) (timestamp % 20000);
     }
 
     private ScreenState getScreenState(long timestamp) {
-        int currentSecond = getCurrentSecond(timestamp);
+        int currentSecond = getCurrentSecond(timestamp) / 1000;
         Log.d("myLogs", "getScreenState() called with: currentSecond = [" + currentSecond + "]");
         if (currentSecond < 16) {
             return createMemState(currentSecond, timestamp);
@@ -53,14 +59,23 @@ public class MemRepository {
         }
     }
 
-    private MemState createMemState(int currentSecond, long timestamp){
+    private MemState createMemState(int currentSecond, long timestamp) {
         String memUrl = memFactory.getMemOfTime(timestamp);
 
         return new MemState(memUrl, currentSecond);
     }
 
-    private ResultState createResultState(){
+    private ResultState createResultState() {
         return new ResultState();
     }
 
+    //--------------------------------SpinnerInteraction------------------------------------------//
+
+    public void setSpinner(Spinner spinner) {
+        this.currentSpinner = spinner;
+    }
+
+    public void clearSpinner() {
+        this.currentSpinner = null;
+    }
 }

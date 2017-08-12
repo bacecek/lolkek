@@ -53,9 +53,9 @@ public class ShopFragment extends Fragment {
 
     private void initRecyclerView() {
         List<Spinner> dataset = new ArrayList<>();
-        dataset.add(new Spinner(100, 2, 2));
-        dataset.add(new Spinner(100, 3, 5));
-        dataset.add(new Spinner(100, 10, 5));
+        dataset.add(new Spinner(1,100, 2, 2));
+        dataset.add(new Spinner(2,100, 3, 5));
+        dataset.add(new Spinner(3,100, 10, 5));
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
 
