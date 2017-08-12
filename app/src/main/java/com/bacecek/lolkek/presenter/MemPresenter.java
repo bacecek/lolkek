@@ -1,13 +1,18 @@
 package com.bacecek.lolkek.presenter;
 
+import android.util.Log;
+
 import com.arellomobile.mvp.InjectViewState;
+import com.bacecek.lolkek.data.ScreenState;
 import com.bacecek.lolkek.model.MemRepository;
 import com.bacecek.lolkek.navigation.AppRouter;
-import com.bacecek.lolkek.navigation.Screen;
 import com.bacecek.lolkek.view.MemView;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  *
@@ -25,11 +30,22 @@ public class MemPresenter extends BasePresenter<MemView> {
         this.memRepository = memRepository;
     }
 
-    public void exampleMethodNavigate(){
-        appRouter.navigateTo(Screen.SCREEN_MEM); //ВСЁ!
+    public void initMem(){
+        memRepository
+                .initMem()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(this::handleScreenStateSuccess, this::handleScreenStateFailure);
     }
 
-    public void exampleMethodToView(){
-      // getViewState().methodInView(); //ВСЁ!
+    public void handleScreenStateSuccess(ScreenState screenState){
+        Log.d("myLogs", "handleScreenStateSuccess: " + screenState.getState());
+        getViewState().showScreenState(screenState);
     }
+
+    public void handleScreenStateFailure(Throwable throwable){
+        Log.d("myLogs", "handleScreenStateFailure: " + throwable);
+        //Error handling on hakaton? Maybe
+    }
+
 }
