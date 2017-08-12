@@ -75,18 +75,18 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (slidingLayout.getPanelState() == SlidingUpPanelLayout.PanelState.EXPANDED) {
-            slidingLayout.setPanelState(SlidingUpPanelLayout.PanelState.ANCHORED);
-        } else if (slidingLayout.getPanelState() == SlidingUpPanelLayout.PanelState.ANCHORED) {
-            slidingLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+        if (fragment != null && fragment instanceof BackButtonListener) {
+            //((BackButtonListener) fragment).onBackPressed();
+            if (slidingLayout.getPanelState() == SlidingUpPanelLayout.PanelState.EXPANDED) {
+                slidingLayout.setPanelState(SlidingUpPanelLayout.PanelState.ANCHORED);
+            } else if (slidingLayout.getPanelState() == SlidingUpPanelLayout.PanelState.ANCHORED) {
+                slidingLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+            } else {
+                super.onBackPressed();
+            }
         } else {
             super.onBackPressed();
         }
-/*        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
-        if (fragment != null && fragment instanceof BackButtonListener) {
-            ((BackButtonListener) fragment).onBackPressed();
-        } else {
-
-        }*/
     }
 }
