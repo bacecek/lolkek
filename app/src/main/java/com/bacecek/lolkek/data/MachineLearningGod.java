@@ -11,8 +11,11 @@ import javax.inject.Singleton;
 @Singleton
 public class MachineLearningGod {
 
+    private final MemFactory memFactory;
+
     @Inject
-    public MachineLearningGod() {
+    public MachineLearningGod(MemFactory memFactory) {
+        this.memFactory = memFactory;
     }
 
     public RoundResult getResult() {
@@ -27,5 +30,9 @@ public class MachineLearningGod {
     public int getPercent() {
         int answer = 50 + new Random().nextInt(50);
         return answer;
+    }
+
+    public String getMem(){
+        return memFactory.getMemOfTime(new Random().nextInt(34));
     }
 }

@@ -11,17 +11,6 @@
     android:paddingRight="16dp"
     android:paddingBottom="64dp">
 
-    <TextView
-        android:layout_width="60dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/txt_timer"
-        android:background="@drawable/bg_timer"
-        android:gravity="center"
-        android:textSize="20sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:text="15"/>
-
     <FrameLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -35,6 +24,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:scaleType="fitCenter"
             android:id="@+id/img_mem"/>
 
         <android.support.constraint.ConstraintLayout
@@ -136,5 +126,16 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/btn_gavno"
         app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <TextView
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_timer"
+        android:background="@drawable/bg_timer"
+        android:gravity="center"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:text="15"/>
 
 </android.support.constraint.ConstraintLayout>

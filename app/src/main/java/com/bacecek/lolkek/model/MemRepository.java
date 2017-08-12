@@ -61,9 +61,8 @@ public class MemRepository {
     }
 
     private MemState createMemState(int currentSecond, long timestamp) {
-        String memUrl = memFactory.getMemOfTime(timestamp);
 
-        return new MemState(memUrl, currentSecond);
+        return new MemState(roundLogic.getMem(), currentSecond);
     }
 
     private ResultState createResultState() {

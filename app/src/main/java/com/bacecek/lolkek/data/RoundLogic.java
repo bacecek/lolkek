@@ -23,6 +23,16 @@ public class RoundLogic {
     private String percent;
     private String title;
 
+    public String getMem() {
+        return mem;
+    }
+
+    public void setMem(String mem) {
+        this.mem = mem;
+    }
+
+    private String mem;
+
     private Spinner spinner;
 
     public Spinner getSpinner() {
@@ -40,7 +50,7 @@ public class RoundLogic {
     }
 
     public boolean isWin(RoundResult choice) {
-        return choice.equals(result);
+        return result.equals(choice);
     }
 
     public RoundResult getResult() {
@@ -59,6 +69,7 @@ public class RoundLogic {
         this.spinner = null;
         this.result = machineLearningGod.getResult();
         this.percent = String.valueOf(machineLearningGod.getPercent());
+        this.mem = machineLearningGod.getMem();
     }
 
     public void maybeResult() {

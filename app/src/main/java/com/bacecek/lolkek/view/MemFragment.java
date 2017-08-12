@@ -17,6 +17,7 @@ import com.bacecek.lolkek.R;
 import com.bacecek.lolkek.Utils;
 import com.bacecek.lolkek.data.MemState;
 import com.bacecek.lolkek.data.ResultState;
+import com.bacecek.lolkek.data.RoundResult;
 import com.bacecek.lolkek.data.ScreenState;
 import com.bacecek.lolkek.navigation.BackButtonListener;
 import com.bacecek.lolkek.presenter.MemPresenter;
@@ -101,7 +102,7 @@ public class MemFragment extends MvpAppCompatFragment implements MemView, BackBu
     private void showMem(MemState memState) {
         timer.setText(String.valueOf(15-memState.getTime()));
         Glide.with(getContext())
-                .load(memState.getMem())
+                .load(memState.getMem()).placeholder(R.drawable.placeholder).fitCenter()
                 .into(mem);
     }
 
@@ -123,12 +124,14 @@ public class MemFragment extends MvpAppCompatFragment implements MemView, BackBu
     @OnClick(R.id.btn_gavno)
     public void onGavnoClicked(){
         Log.d("myLogs", "onGavnoClicked: ");
+        presenter.setResult(RoundResult.BAD);
         ChooseSpinnerFragment.newInstance().show(getFragmentManager(), "bad");
     }
 
     @OnClick(R.id.btn_lol)
     public void onLolClicked(){
         Log.d("myLogs", "onLolClicked: ");
+        presenter.setResult(RoundResult.LOL);
         ChooseSpinnerFragment.newInstance().show(getFragmentManager(), "lol");
     }
 

@@ -3,6 +3,7 @@ package com.bacecek.lolkek.presenter;
 import android.util.Log;
 
 import com.arellomobile.mvp.InjectViewState;
+import com.bacecek.lolkek.data.RoundResult;
 import com.bacecek.lolkek.data.ScreenState;
 import com.bacecek.lolkek.model.MemRepository;
 import com.bacecek.lolkek.navigation.AppRouter;
@@ -25,6 +26,7 @@ public class MemPresenter extends BasePresenter<MemView> {
     private final MemRepository memRepository;
 
     CompositeDisposable composite = new CompositeDisposable();
+    private RoundResult result;
 
     @Inject
     public MemPresenter(AppRouter appRouter, MemRepository memRepository) {
@@ -57,5 +59,9 @@ public class MemPresenter extends BasePresenter<MemView> {
 
     public void onGavnoClicked() {
 
+    }
+
+    public void setResult(RoundResult result) {
+        memRepository.setChoiceRound(result);
     }
 }
