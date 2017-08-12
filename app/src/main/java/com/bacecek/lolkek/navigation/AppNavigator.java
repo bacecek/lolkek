@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import com.bacecek.lolkek.R;
 import com.bacecek.lolkek.navigation.command.BackTo;
 import com.bacecek.lolkek.navigation.command.Forward;
 import com.bacecek.lolkek.navigation.command.Replace;
@@ -110,7 +111,7 @@ public class AppNavigator implements Navigator {
 
     private Fragment createFragment(int screenKey, Object data) {
         switch (screenKey) {
-            case 1:
+            case R.id.mem:
                 return MemFragment.newInstance();
             default:
                 return null;
