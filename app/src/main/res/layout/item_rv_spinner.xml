@@ -1,23 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
-    android:layout_margin="20dp">
+    android:layout_margin="10dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingLeft="25dp"
-        android:paddingRight="25dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp">
+        android:paddingTop="10dp">
 
         <ImageView
             android:id="@+id/iv_shop_spinner"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_centerHorizontal="true"
             android:src="@drawable/spinner" />
 
@@ -30,14 +27,45 @@
             android:text="0"
             android:textColor="@color/cardview_dark_background" />
 
-        <Button
-            android:id="@+id/btn_shop_buy"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tv_shop_count"
-            android:layout_centerHorizontal="true"
             style="@style/Widget.AppCompat.Button.Colored"
-            android:text="Купить" />
+            android:layout_below="@id/tv_shop_count">
+
+            <TextView
+                android:id="@+id/btn_shop_buy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_centerVertical="true"
+                android:background="@android:color/transparent"
+                android:textColor="@android:color/white"
+                android:text="Купить за" />
+
+            <TextView
+                android:id="@+id/tv_shop_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_centerVertical="true"
+                android:layout_below="@id/btn_shop_buy"
+                android:layout_toRightOf="@id/btn_shop_buy"
+                android:layout_marginLeft="5dp"
+                android:background="@android:color/transparent"
+                android:textColor="@android:color/white"
+                android:text="100" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/tv_shop_price"
+                android:background="@drawable/cat"/>
+
+        </RelativeLayout>
+
+
 
     </RelativeLayout>
 </android.support.v7.widget.CardView>
