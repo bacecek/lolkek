@@ -1,6 +1,7 @@
 package com.bacecek.lolkek.model;
 
 import android.util.Log;
+import android.widget.Spinner;
 
 import com.bacecek.lolkek.data.MemFactory;
 import com.bacecek.lolkek.data.MemState;
@@ -21,6 +22,8 @@ import io.reactivex.Observable;
 public class MemRepository {
 
     private final MemFactory memFactory;
+
+    private Spinner currentSpinner;
 
     @Inject
     public MemRepository(MemFactory memFactory) {
@@ -63,4 +66,13 @@ public class MemRepository {
         return new ResultState();
     }
 
+    //--------------------------------SpinnerInteraction------------------------------------------//
+
+    public void setSpinner(Spinner spinner) {
+        this.currentSpinner = spinner;
+    }
+
+    public void clearSpinner() {
+        this.currentSpinner = null;
+    }
 }
