@@ -32,7 +32,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.Holder> {
 
     @Override
     public void onBindViewHolder(Holder holder, int position) {
-        holder.tvCount.setText(dataset.get(position).getCount());
+        holder.tvCount.setText("123");
 
         int type = dataset.get(position).getCoeff();
         switch (type) {
@@ -57,7 +57,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.Holder> {
 
     @Override
     public int getItemCount() {
-        return 0;
+        return dataset.size();
     }
 
     static class Holder extends RecyclerView.ViewHolder {
@@ -71,6 +71,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.Holder> {
             ivSpinner = (ImageView) itemView.findViewById(R.id.iv_shop_spinner);
             tvCount = (TextView) itemView.findViewById(R.id.tv_shop_count);
             btnBuy = (Button) itemView.findViewById(R.id.btn_shop_buy);
+            setListener(onShopItemSelected);
         }
 
         private void setListener(final OnShopItemSelected listener) {
