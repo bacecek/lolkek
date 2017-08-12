@@ -3,4 +3,9 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="spinner1">#795548</color>
+    <color name="spinner2">#B2FF59</color>
+    <color name="spinner3">#D84315</color>
+    <color name="spinner4">#FFEB3B</color>
+
 </resources>
