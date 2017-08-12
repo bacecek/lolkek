@@ -14,8 +14,6 @@ public class MemState extends ScreenState{
         this.time = time;
     }
 
-
-
     @Override
     public int getState() {
         return MEM;
@@ -23,5 +21,9 @@ public class MemState extends ScreenState{
 
     public String getMem() {
         return memUrl;
+    }
+
+    public int getTime() {
+        return time;
     }
 }

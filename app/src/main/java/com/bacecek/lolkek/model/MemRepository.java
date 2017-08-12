@@ -30,21 +30,21 @@ public class MemRepository {
     public Observable<ScreenState> initMem() {
         return Observable
                 .timer(1000, TimeUnit.MILLISECONDS)
-                .retry()
+                .repeat()
                 .map(this::getTimeStamp)
                 .map(this::getScreenState);
     }
 
-    private long getTimeStamp(Long l) {
+    private long getTimeStamp(long i) {
         return System.currentTimeMillis();
     }
 
     private int getCurrentSecond(Long timestamp) {
-        return (int) (timestamp % 20);
+        return (int) (timestamp % 20000);
     }
 
     private ScreenState getScreenState(long timestamp) {
-        int currentSecond = getCurrentSecond(timestamp);
+        int currentSecond = getCurrentSecond(timestamp) / 1000;
         Log.d("myLogs", "getScreenState() called with: currentSecond = [" + currentSecond + "]");
         if (currentSecond < 16) {
             return createMemState(currentSecond, timestamp);
@@ -53,13 +53,13 @@ public class MemRepository {
         }
     }
 
-    private MemState createMemState(int currentSecond, long timestamp){
+    private MemState createMemState(int currentSecond, long timestamp) {
         String memUrl = memFactory.getMemOfTime(timestamp);
 
         return new MemState(memUrl, currentSecond);
     }
 
-    private ResultState createResultState(){
+    private ResultState createResultState() {
         return new ResultState();
     }
 
