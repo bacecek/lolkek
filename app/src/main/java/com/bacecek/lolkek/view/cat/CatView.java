@@ -7,4 +7,5 @@ import com.bacecek.lolkek.view.BaseView;
  */
 
 public interface CatView extends BaseView {
+    void showPlusBalance(int plus);
 }

@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.bacecek.lolkek.data.ScreenState;
+import com.bacecek.lolkek.model.InfoRepo;
 import com.bacecek.lolkek.model.MemRepository;
 import com.bacecek.lolkek.navigation.AppRouter;
 import com.bacecek.lolkek.view.MemView;
@@ -21,10 +22,13 @@ import javax.inject.Singleton;
 public class CatPresenter extends BasePresenter<CatView> {
     private final AppRouter appRouter;
 
+    InfoRepo infoRepo;
+
     @Inject
-    public CatPresenter(AppRouter appRouter, MemRepository memRepository) {
+    public CatPresenter(AppRouter appRouter, InfoRepo infoRepo) {
         super(appRouter);
         this.appRouter = appRouter;
+        this.infoRepo = infoRepo;
     }
 
     public void initCat() {
@@ -40,6 +44,7 @@ public class CatPresenter extends BasePresenter<CatView> {
     }
 
     public void gladitCat() {
-
+        infoRepo.increaseBalance(1);
+        getViewState().showPlusBalance(1);
     }
 }

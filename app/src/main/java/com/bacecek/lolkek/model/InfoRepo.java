@@ -17,7 +17,7 @@ public class InfoRepo {
     private static final String SPINNER_KEY = "spinner";
     private static final String BALANCE = "balance";
 
-    private static final int DEFAULT_BALANCE = 10;
+    private static final int DEFAULT_BALANCE = 1000;
 
     private SharedPreferences sp;
 
@@ -27,7 +27,7 @@ public class InfoRepo {
     }
 
     public int getSpinner(int type) {
-        return sp.getInt(SPINNER_KEY + type, 0);
+        return sp.getInt(SPINNER_KEY + type, 1);
     }
 
     public int getBalance() {

@@ -1,11 +1,12 @@
 package com.bacecek.lolkek.presenter;
 
+import android.util.Log;
+
 import com.arellomobile.mvp.InjectViewState;
 import com.bacecek.lolkek.model.InfoRepo;
-import com.bacecek.lolkek.model.MemRepository;
 import com.bacecek.lolkek.navigation.AppRouter;
-import com.bacecek.lolkek.view.choose_spinner.ChooseSpinnerView;
 import com.bacecek.lolkek.view.models.Spinner;
+import com.bacecek.lolkek.view.shop.ShopView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,29 +14,26 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-/**
- * Created by macbookpro on 12.08.17.
- */
-
 @Singleton
 @InjectViewState
-public class ChooseSpinnerPresenter extends BasePresenter<ChooseSpinnerView> {
-    private final AppRouter appRouter;
-    private final MemRepository memRepository;
+public class ShopPresenter extends BasePresenter<ShopView> {
+
     private final InfoRepo infoRepo;
+    private final AppRouter appRouter;
+
+    @Override
+    public void attachView(ShopView view) {
+        super.attachView(view);
+    }
 
     @Inject
-    public ChooseSpinnerPresenter(AppRouter appRouter,MemRepository memRepository, InfoRepo infoRepo) {
+    public ShopPresenter(AppRouter appRouter, InfoRepo infoRepo) {
         super(appRouter);
         this.appRouter = appRouter;
-        this.memRepository = memRepository;
         this.infoRepo = infoRepo;
     }
 
-    @Override
-    protected void onFirstViewAttach() {
-        super.onFirstViewAttach();
-
+    public void initShop(){
         int countSpinner1 = infoRepo.getSpinner(2);
         int countSpinner2 = infoRepo.getSpinner(3);
         int countSpinner3 = infoRepo.getSpinner(5);
@@ -47,18 +45,26 @@ public class ChooseSpinnerPresenter extends BasePresenter<ChooseSpinnerView> {
         Spinner spinner4 = new Spinner(400, 10, countSpinner4);
 
         List<Spinner> dataset = new ArrayList<>();
-
         dataset.add(spinner1);
         dataset.add(spinner2);
         dataset.add(spinner3);
         dataset.add(spinner4);
 
-
-        getViewState().setSpinners(dataset);
+        getViewState().updateItems(dataset);
     }
 
-    public void onChooseSpinner(Spinner spinner) {
-        memRepository.setSpinner(spinner);
-        getViewState().dismiss();
+
+    public void onItemBought(Spinner item) {
+        Log.e("ShopRepo", String.valueOf(infoRepo.getBalance()));
+        Log.e("ShopRepo", String.valueOf(item.getPrice()));
+        if(infoRepo.getBalance() >= item.getPrice()){
+            infoRepo.increaseSpinnerCount(item.getCoeff(), 1);
+            infoRepo.increaseBalance(-item.getPrice());
+            initShop();
+        }
+        else{
+            getViewState().showError();
+        }
+
     }
 }
